@@ -61,24 +61,16 @@ void insertAtEnding(DDLNode **head, int data){
     DDLNode *newNode = CreateNode(data);
     if(*head == NULL){
         *head = newNode;
-        // printf("\n%d ", *head);
-        // printf("%d\n\n", newNode);
         return;
     }
     newNode->next = NULL;
     newNode->prev = *head;
-    // printf("\nnewNode->prev:   %d\n", newNode->prev);
     DDLNode* last = *head;
-    // printf("Address of moving pointer: ");
     while (last->next!= NULL) {
         last = last->next;
-        // printf("%d ", last);
     }
     last->next = newNode;
     newNode->prev = last;
-    // printf("\nlast->prev:  %d", last->prev);
-    // printf("\n*head:   %d \n", *head);
-    // printf("%d ---- %d ---- %d ---- %d\n\n", newNode, newNode->data, newNode->prev, newNode->next);
 }
 
 void printList(DDLNode *node){

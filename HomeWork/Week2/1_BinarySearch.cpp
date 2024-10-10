@@ -6,9 +6,12 @@ using namespace std;
 int binary_search(int arr[], int start, int end, int key){
     if(start > end) return -1;
     int mid = (start + end) / 2;
-    if(arr[mid] == key) return mid;
-    if(arr[mid] < key) return binary_search(arr, mid + 1, end, key);
-    if(arr[mid] > key) return binary_search(arr, start, mid - 1, key);
+    if(arr[mid] == key) 
+        return mid;
+    if(arr[mid] < key) 
+        return binary_search(arr, mid + 1, end, key);
+    if(arr[mid] > key) 
+        return binary_search(arr, start, mid - 1, key);
     return -1;  
 }
 

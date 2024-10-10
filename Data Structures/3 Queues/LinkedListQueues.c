@@ -49,7 +49,7 @@ int main(void) {
 
 Queue *CreatQueue(){
     Queue *Q = (Queue*)malloc(sizeof(Queue));
-    ListNode *temp = (ListNode*)malloc(sizeof(ListNode)); //??????????????????????????
+    ListNode *temp = (ListNode*)malloc(sizeof(ListNode)); 
     if(!Q)
         return NULL;
     Q->front = NULL;
