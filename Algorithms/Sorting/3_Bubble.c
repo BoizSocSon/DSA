@@ -1,17 +1,19 @@
 #include <stdio.h>
 
 void bubble_sort(int arr[], int n);
+void BubbleSort(int arr[], int n);
 
 int main() {
     int n;
     scanf("%d", &n);
-    int arr[n];
+    int arr[100];
     
     for(int i = 0; i < n; i++) {
         scanf("%d", &arr[i]);
     }
     
-    bubble_sort(arr, n);
+    // bubble_sort(arr, n);
+    BubbleSort(arr, n); 
     
     for(int i = 0; i < n; i++) {
         printf("%d ", arr[i]);
@@ -30,4 +32,19 @@ void bubble_sort(int arr[], int n) {
             }
         }
     }
+}
+
+void BubbleSort(int arr[], int n){
+    int swapped;
+    do{
+        swapped = 0;
+        for(int i = 0; i < n - 1; i++){
+            if(arr[i] > arr[i + 1]){
+                int tmp = arr[i];
+                arr[i] = arr[i + 1];
+                arr[i + 1] = tmp;
+                swapped = 1;
+            }
+        }
+    } while(swapped == 1);
 }

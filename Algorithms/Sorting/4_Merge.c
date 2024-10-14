@@ -7,7 +7,7 @@ void merge(int arr[], int l, int m, int r){
     int n1 = m - l + 1;
     int n2 = r - m;
      
-    int L[n1], R[n2]; 
+    int L[100], R[100]; 
 
 
     for(i = 0; i < n1; i++)
@@ -44,7 +44,7 @@ void merge_sort(int arr[], int l, int r){
 int main(){
     int n; 
     scanf("%d", &n);
-    int arr[n];
+    int arr[200];
     for(int i = 0; i < n; i++)
     scanf("%d", &arr[i]);
     merge_sort(arr, 0, n - 1);
