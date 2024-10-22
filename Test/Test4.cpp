@@ -1,10 +1,10 @@
 #include "iostream"
 using namespace std;
-void swap(int &a, int &b) {
-    int temp = a;
-    a = b;
-    b = temp;
-}
+// void swap(int &a, int &b) {
+//     int temp = a;
+//     a = b;
+//     b = temp;
+// }
 void heapify(int a[], int i, int n) { // hàm vun lại đống với nút cha là nút chỉ định
     int l = 2*i;
     int r = 2*i + 1;

@@ -1,5 +1,8 @@
-#include <stdio.h>
-#include <stdlib.h>
+// #include <stdio.h>
+// #include <stdlib.h>
+#include <iostream>
+#include <queue>
+using namespace std;
 
 struct Node{
     int data;
@@ -27,6 +30,7 @@ Node *CreateNode(int data){
     newNode->left = NULL;
     newNode->right = NULL;
     newNode->height = 1;
+    return newNode;
 }
 
 
@@ -247,6 +251,21 @@ struct Node* DeleteNode(struct Node* root, int key)
     return root;
 }
 
+void PrintOrderLevel(Node *root){
+    if(root == nullptr)
+        return;
+    
+    queue<Node*> Q;
+    Q.push(root);
+    while(!Q.empty()){
+        Node *current = Q.front();
+        cout << current->data << "->";
+        if(current->left != nullptr) Q.push(current->left);
+        if(current->right != nullptr) Q.push(current->right);
+        Q.pop();
+    }
+}
+
 void PreOrder(Node *root){
     if(root != NULL){
         printf("%d ", root->data);
@@ -298,6 +317,8 @@ int main()
 
     printf("\nPreorder traversal after deletion of 10 \n");
     PreOrder(root);
-
+    printf("\nLevel Order traversal of the constructed AVL "
+           "tree is \n");
+    PrintOrderLevel(root);
     return 0;
 }   
