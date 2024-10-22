@@ -50,9 +50,9 @@ Node *Search(Node *root, int data){
 Node *FindMin(Node *root){
     if(root == NULL)
         return NULL;
-    Node *lmin = FindMin(root->left);
-    if(lmin != NULL) lmin;
-    return root;
+    if(root->left == NULL)
+        return root;
+    return FindMin(root->left);
 }   
 
 Node *Delete(Node *root, int data){
@@ -76,6 +76,7 @@ Node *Delete(Node *root, int data){
             free(temp);
         }
     }
+    return root;
 }
 
 int main(){

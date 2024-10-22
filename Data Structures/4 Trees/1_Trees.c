@@ -27,7 +27,7 @@ Node *find(int v, Node *r){
     if(r->id == v)
         return r;
     Node *p = r->leftMostChild;
-    while (p != NULL) {
+    while (p != NULL) { 
         Node *q = find(v, p);
         if(q != NULL)
             return q;
