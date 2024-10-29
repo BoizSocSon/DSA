@@ -130,7 +130,7 @@ int heightNode(Node *r){
     int maxH = 0;
     for(Node *p = r->leftMostChild; p != NULL; p = p->rightSibling){
         int h = heightNode(p);
-        if(h > maxH) maxH = h;
+        if(h > maxH) maxH = h; 
     }
     return maxH + 1;    
 }

@@ -164,7 +164,7 @@ struct Node* DeleteNode(struct Node* root, int key)
 {
     // STEP 1: PERFORM STANDARD BST DELETE
 
-    if (root == NULL)
+    if (root == nullptr)
         return root;
 
     // If the key to be deleted is smaller than the
@@ -182,33 +182,45 @@ struct Node* DeleteNode(struct Node* root, int key)
     else
     {
         // node with only one child or no child
-        if( (root->left == NULL) || (root->right == NULL) )
-        {
-            struct Node *temp = root->left ? root->left :
-                                             root->right;
+        // if( (root->left == NULL) || (root->right == NULL) )
+        // {
+        //     struct Node *temp = root->left ? root->left : root->right;
 
-            // No child case
-            if (temp == NULL)
-            {
-                temp = root;
-                root = NULL;
-            }
-            else // One child case
-             *root = *temp; // Copy the contents of
-                            // the non-empty child
-            free(temp);
-        }
-        else
-        {
-            // node with two children: Get the inorder
-            // successor (smallest in the right subtree)
-            struct Node* temp = minValueNode(root->right);
+        //     // No child case
+        //     if (temp == NULL)
+        //     {
+        //         temp = root;
+        //         root = NULL;
+        //     }
+        //     else // One child case
+        //         *root = *temp; // Copy the contents of
+        //                     // the non-empty child
+        //     free(temp);
+        // }
+        // else
+        // {
+        //     // node with two children: Get the inorder
+        //     // successor (smallest in the right subtree)
+        //     struct Node* temp = minValueNode(root->right);
 
-            // Copy the inorder successor's data to this node
+        //     // Copy the inorder successor's data to this node
+        //     root->data = temp->data;
+
+        //     // Delete the inorder successor
+        //     root->right = DeleteNode(root->right, temp->data);
+        // }
+
+        if(root->left != NULL && root->right != NULL){
+            Node *temp = minValueNode(root->right);
             root->data = temp->data;
-
-            // Delete the inorder successor
             root->right = DeleteNode(root->right, temp->data);
+        } else {
+            Node *temp = root;
+            if(root->left == NULL)
+                root = root->right;
+            else if(root->right == NULL)
+                root = root->left;
+            free(temp);
         }
     }
 
@@ -217,8 +229,7 @@ struct Node* DeleteNode(struct Node* root, int key)
       return root;
 
     // STEP 2: UPDATE HEIGHT OF THE CURRENT NODE
-    root->height = 1 + max(height(root->left),
-                           height(root->right));
+    root->height = 1 + max(height(root->left),height(root->right));
 
     // STEP 3: GET THE BALANCE FACTOR OF THIS NODE (to
     // check whether this node became unbalanced)
@@ -227,7 +238,7 @@ struct Node* DeleteNode(struct Node* root, int key)
     // If this node becomes unbalanced, then there are 4 cases
 
     // Left Left Case
-    if (balance > 1 && GetBalance(root->left) >= 0)
+    if (balance > 1 && GetBalance(root->left) >= 0) 
         return RightRotate(root);
 
     // Left Right Case
@@ -264,6 +275,17 @@ void PrintOrderLevel(Node *root){
         if(current->right != nullptr) Q.push(current->right);
         Q.pop();
     }
+}
+
+Node *Search(Node *root, int data){
+    if(root == NULL || root->data == data)
+        return root;
+    else if(root->data > data){
+        return Search(root->left, data);
+    } else if(root->data < data){
+        return Search(root->right, data);
+    }
+    return NULL;
 }
 
 void PreOrder(Node *root){

@@ -175,6 +175,17 @@ struct Node* DeleteNode(struct Node* root, int key)
     return root;
 }
 
+Node *Search(Node *root, int data){
+    if(root == NULL || root->data == data)
+        return root;
+    else if(root->data > data){
+        return Search(root->left, data);
+    } else if(root->data < data){
+        return Search(root->right, data);
+    }
+    return NULL;
+}
+
 void PrintOrderLevel(Node *root){
     if(root == nullptr)
         return;
@@ -221,5 +232,10 @@ int main()
     cout << endl;
     
     PrintOrderLevel(root);
+    Node *find = Search(root, 10);
+    if(find!= NULL)
+    cout << "\nFound node: " << find->data << endl;
+    else
+    cout << "\nNode not found!" << endl;
     return 0;
 }   

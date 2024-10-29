@@ -25,7 +25,7 @@ int main(){
 }
 
 StackNode *CreateNode(int data){
-    StackNode *newNode = new StackNode;
+    StackNode *newNode = new StackNode();
     newNode->data = data;
     newNode->next = nullptr;
     return newNode;

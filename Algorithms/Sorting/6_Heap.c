@@ -21,7 +21,7 @@ void heapify(int A[], int i, int N) {
         max = R;
     }
     if (max != i) {
-        int temp = A[i];
+        int temp = A[i]; 
         A[i] = A[max];
         A[max] = temp;
         heapify(A, max, N);

@@ -47,6 +47,41 @@ Node *Search(Node *root, int data){
     return NULL;
 }
 
+Node *SearchDepth(Node *root, int data, int *depth){
+    if(root == NULL || root->data == data)
+        return root;
+    else if(root->data > data){
+        *depth += 1;
+        return SearchDepth(root->left, data, depth);
+    } else if(root->data < data){
+        *depth += 1;
+        return SearchDepth(root->right, data, depth);
+    }
+    return NULL;
+}
+
+int HeightNode(Node *root){
+    if(root == NULL)
+    return 0;
+    int leftHeight = HeightNode(root->left);
+    int rightHeight = HeightNode(root->right);
+    return (leftHeight > rightHeight)? leftHeight+1 : rightHeight+1;
+}
+
+int Height(Node* root, int key){
+    Node *node = Search(root, key);
+    return HeightNode(node);
+}
+
+int DepthNode(Node* root, int key){
+    Node *node = Search(root, key);
+    if(node == NULL)
+        return -1;
+    int leftDepth = DepthNode(root->left, key);
+    int rightDepth = DepthNode(root->right, key);
+    return (leftDepth > rightDepth)? leftDepth+1 : rightDepth+1;
+}
+
 Node *FindMin(Node *root){
     if(root == NULL)
         return NULL;
@@ -80,5 +115,24 @@ Node *Delete(Node *root, int data){
 }
 
 int main(){
+    Node *root = NULL;
+    root = Insert(root, 50);
+    root = Insert(root, 30);
+    root = Insert(root, 20);
+    root = Insert(root, 40);
+    root = Insert(root, 70);
+    root = Insert(root, 60);
+    root = Insert(root, 80);
+    root = Insert(root, 25);
 
+    printf("Height of the tree is %d\n", Height(root,30));
+    printf("Depth of the tree is %d\n", DepthNode(root, 50));
+    int depht = 0;
+    SearchDepth(root, 80, &depht);
+    printf("Depth of the tree is %d\n", depht);
+    // printf("Search 20: %d\n", Search(root, 20)? 1 : 0);
+    // printf("Search 90: %d\n", Search(root, 90)? 1 : 0);
+    // root = Delete(root, 20);
+    // printf("Search 20 after deletion: %d\n", Search(root, 20)? 1 : 0);
+    return 0;
 }
