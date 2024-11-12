@@ -342,5 +342,6 @@ int main()
     printf("\nLevel Order traversal of the constructed AVL "
            "tree is \n");
     PrintOrderLevel(root);
+    printf("root data %d", root->data);
     return 0;
 }   
